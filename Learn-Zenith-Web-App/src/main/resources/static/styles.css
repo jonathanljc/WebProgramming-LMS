@@ -1,0 +1,159 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    background-color: #007791;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.header-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.main {
+    display: flex;
+    justify-content: center; /* Center the content horizontally */
+    align-items: flex-start; /* Align items at the start (top) vertically */
+    flex-wrap: wrap; /* Wrap items to new line if they exceed container width */
+}
+
+.footer {
+    background-color: #007791;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.search-bar {
+    width: 700px; /* Set the width of the search bar */
+    height: 40px; /* Set the height of the search bar */
+    padding: 10px;
+    margin-right: 200px;
+    border-radius: 20px;
+}
+
+.cart-icon {
+    margin-left: 10px;
+}
+.cart-icon:hover .cart-image{
+    filter: brightness(0) saturate(100%) invert(17%) sepia(93%) saturate(5898%) hue-rotate(359deg) brightness(102%) contrast(104%);
+
+}
+.cart-icon:hover {
+    border-bottom: 2px solid black;
+}
+
+.cart-image {
+    width: 50px; /* Set the width of the image */
+    height: 50px; /* Set the height of the image */
+}
+
+.home-icon {
+    margin-right: 170px;
+}
+
+.home-icon:hover {
+    border-bottom: 2px solid black;
+}
+
+.home-icon:hover .home-image {
+    filter: brightness(0) saturate(100%) invert(17%) sepia(93%) saturate(5898%) hue-rotate(359deg) brightness(102%) contrast(104%);
+    
+}
+
+.home-image {
+    width: 50px; /* Set the width of the image */
+    height: 50px; /* Set the height of the image */
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+.header {
+    display: flex;
+    flex-direction: column; /* Display items vertically */
+    align-items: center; /* Align items to the center of the flex container */
+    margin-bottom: 20px; /* Add margin to separate from the search bar */
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+/* CSS for dropdown */
+.dropdown {
+    text-align: center; /* Center align the dropdown button */
+    margin: 0 20px 20px 0; /* Add some margin between dropdowns */
+    margin-top:-10px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropbtn {
+    width: 150px; /* Adjust the width of the dropdown button */
+}
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    
+}
+.nav-links li {
+    margin-right: 20px;
+}
+
+.nav-links li:last-child {
+    margin-right: 0;
+}
+.nav-links li a[href="/TeachonLearnZenith"] {
+    color: black;
+    text-decoration: none; /* Remove underline */
+}
+.nav-links li a[href="/mylearning"] {
+    color: black;
+    text-decoration: none; /* Remove underline */
+}
+.nav-links li a[href="/TeachonLearnZenith"]:hover {
+    color: red;
+    
+}
+.nav-links li a[href="/mylearning"]:hover {
+    color: red;
+    
+}
