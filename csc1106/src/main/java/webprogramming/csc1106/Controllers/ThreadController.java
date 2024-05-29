@@ -2,6 +2,7 @@ package webprogramming.csc1106.Controllers;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -31,18 +32,22 @@ public class ThreadController {
     public String openThread(@PathVariable String id, Model model) {
         int threadId = Integer.parseInt(id); // Convert String to int
 
-        Optional<ForumThread> thread = forumThreadRepo.findById(threadId); // Find thread by id
-        ArrayList<ForumThread> threadSelected = new ArrayList<>();
+        ForumThread threadSelected = forumThreadRepo.findByThreadID(threadId);
 
-        thread.ifPresent(t -> threadSelected.add(t));
+        // Optional<ForumThread> thread = forumThreadRepo.findById(threadId); // Find thread by id
+        // ArrayList<ForumThread> threadSelected = new ArrayList<>();
 
-        model.addAttribute("threadSelected", threadSelected.toArray());
+        // thread.ifPresent(t -> threadSelected.add(t));
 
-        Iterable<ThreadReply> threadReply = threadReplyRepo.findByThreadIDOrderByReplyDateDescReplyTimeDesc(threadId); // Find replies by id
+        // model.addAttribute("threadSelected", threadSelected.toArray());
+
+        model.addAttribute("threadSelected", threadSelected);
+
+        List<ThreadReply> threadReplies = threadSelected.getReplies(); // Find replies by id
         ArrayList<ThreadReply> replies = new ArrayList<>();
         ArrayList<ThreadReply> replyReplies = new ArrayList<>();
-        for (ThreadReply r : threadReply) {
-            if (r.getCommentID() == 0){
+        for (ThreadReply r : threadReplies) {
+            if (r.getParent() == null){
                 replies.add(r);
             }else{
                 replyReplies.add(r);
@@ -65,8 +70,8 @@ public class ThreadController {
         newReply.setReplyDate(sqlDate);
         newReply.setReplyTime(sqlTime);
         newReply.setResponderName("Example name"); // placeholder
-        newReply.setCommentID(Integer.parseInt(commentID));
-        newReply.setThreadID(Integer.parseInt(threadID));
+        newReply.setParent(threadReplyRepo.findByReplyID(Integer.parseInt(commentID)));
+        newReply.setThread(forumThreadRepo.findByThreadID(Integer.parseInt(threadID)));
 
         threadReplyRepo.save(newReply);
 

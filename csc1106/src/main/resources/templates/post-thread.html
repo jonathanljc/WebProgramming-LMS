@@ -366,11 +366,11 @@
     <section class="section">
       <div class="row">
         <div>
-          <form action="#" th:action="@{/post-thread}" th:object="${newThread}" method="post" class="needs-validation" novalidate>
+          <form action="#" th:action="@{/post-thread/{forumID}(forumID=${forumID})}" th:object="${newThread}" method="post" class="needs-validation" novalidate>
 
             <div class="card">
               <div class="card-body">
-                <h5 class="card-title">New thread form<h5> 
+                <h5 class="card-title">New thread form for forum number <h5 th:text="${forumID}"/><h5> 
 
                   <div class="row mb-3">
                     <label for="inputText" class="col-sm-1 col-form-label">Title</label>

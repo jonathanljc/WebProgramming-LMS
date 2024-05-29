@@ -2,11 +2,15 @@ package webprogramming.csc1106.Entities;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class ForumThread {
@@ -16,7 +20,14 @@ public class ForumThread {
     private int threadID; // primary key
 
     // need to map to CourseForum(forumID)
-    private int forumID; // foreign key to CourseForum table
+    // private int forumID; // foreign key to CourseForum table
+
+    @ManyToOne
+    @JoinColumn(name = "forum_id")
+    private CourseForum forum;
+
+    @OneToMany(mappedBy = "thread")
+    private List<ThreadReply> replies;
 
     private String posterName; // name of user that posted the thread
     private Date postDate; 
@@ -24,18 +35,12 @@ public class ForumThread {
     private String title;
     private String content;
 
-    public ForumThread() {
+    public List<ThreadReply> getReplies() {
+        return replies;
     }
 
-    public ForumThread(int threadID, int forumID, String posterName, Date postDate, Time postTime, int replies,
-            String title, String subject) {
-        this.threadID = threadID;
-        this.forumID = forumID;
-        this.posterName = posterName;
-        this.postDate = postDate;
-        this.postTime = postTime;
-        this.title = title;
-        this.content = subject;
+    public void setReplies(List<ThreadReply> replies) {
+        this.replies = replies;
     }
 
     public int getThreadID() {
@@ -46,13 +51,13 @@ public class ForumThread {
     //     this.threadID = threadID;
     // }
 
-    public int getForumID() {
-        return forumID;
+    public CourseForum getForum() {
+        return forum;
     }
 
-    // public void setForumID(int courseID) {
-    //     this.forumID = courseID;
-    // }
+    public void setForum(CourseForum forum) {
+        this.forum = forum;
+    }
 
     public String getPosterName() {
         return posterName;

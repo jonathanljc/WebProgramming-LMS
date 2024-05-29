@@ -386,7 +386,7 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Forum</h1>
+      <h1 th:text="${forum.forumID}"></h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -402,7 +402,7 @@
           <div class="card">
             <div class="card-body">
 
-              <a href="post-thread">
+              <a th:href="@{'/post-thread?forumID=' + ${forum.forumID}}">
                 <button type="button" class="btn btn-primary" id="newThreadBtn">
                   <i class="bi bi-plus me-1"></i> Post new thread
                 </button>
